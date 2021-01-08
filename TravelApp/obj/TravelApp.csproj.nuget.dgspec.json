@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\School_Toeg_Inf\\Sem_3\\NA2_Windows\\Opdracht_App\\TravelApp\\TravelApp\\TravelApp.csproj": {}
+  },
+  "projects": {
+    "D:\\School_Toeg_Inf\\Sem_3\\NA2_Windows\\Opdracht_App\\TravelApp\\TravelApp\\TravelApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\School_Toeg_Inf\\Sem_3\\NA2_Windows\\Opdracht_App\\TravelApp\\TravelApp\\TravelApp.csproj",
+        "projectName": "TravelApp",
+        "projectPath": "D:\\School_Toeg_Inf\\Sem_3\\NA2_Windows\\Opdracht_App\\TravelApp\\TravelApp\\TravelApp.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "D:\\School_Toeg_Inf\\Sem_3\\NA2_Windows\\Opdracht_App\\TravelApp\\TravelApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "uap10.0.17763"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "uap10.0.17763": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "uap10.0.17763": {
+          "dependencies": {
+            "Microsoft.NETCore.UniversalWindowsPlatform": {
+              "target": "Package",
+              "version": "[6.2.10, )"
+            },
+            "MvvmLight": {
+              "target": "Package",
+              "version": "[5.4.1.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win10-arm": {
+          "#import": []
+        },
+        "win10-arm-aot": {
+          "#import": []
+        },
+        "win10-arm64-aot": {
+          "#import": []
+        },
+        "win10-x64": {
+          "#import": []
+        },
+        "win10-x64-aot": {
+          "#import": []
+        },
+        "win10-x86": {
+          "#import": []
+        },
+        "win10-x86-aot": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
