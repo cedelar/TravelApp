@@ -8,20 +8,25 @@ namespace TravelApp.Models
 {
     class TravelTask
     {
-        public string naam { get; set; }
-        public bool isChecked { get; set; }
-        public Priority priority { get; set; }
-        public string description { get; set; }
+        public string Name { get; set; }
+        public bool IsChecked { get; set; }
+        public Priority Priority { get; set; }
+        public string Description { get; set; }
 
         public TravelTask(string naam, Priority priority, string description)
         {
-            this.naam = naam ?? throw new ArgumentNullException(nameof(naam));
-            this.isChecked = false;
-            this.priority = priority;
-            this.description = description;
+            this.Name = naam ?? throw new ArgumentNullException(nameof(naam));
+            this.IsChecked = false;
+            this.Priority = priority;
+            this.Description = description;
         }
 
         public TravelTask(string naam): this(naam, Priority.Normal, null){}
+
+        public override string ToString()
+        {
+            return Name + ": " + Priority.ToString() + " Priority";
+        }
     }
 
     enum Priority

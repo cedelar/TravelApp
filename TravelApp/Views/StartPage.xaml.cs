@@ -15,14 +15,6 @@ namespace TravelApp.Views
     {
         private StartPageViewModel _vm;
 
-        private StartPageViewModel Vm
-        {
-            get
-            {
-                return _vm;
-            }
-        }
-
         public StartPage()
         {
             this.InitializeComponent();
@@ -37,12 +29,12 @@ namespace TravelApp.Views
 
         private void LoginButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Vm.OnLogin(nameInput.Text, pwdInput.Password);
+            _vm.OnLogin(nameInput.Text, pwdInput.Password);
         }
 
         private void AddButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Vm.onAddUser();
+            _vm.onAddUser();
         }
     }
 }

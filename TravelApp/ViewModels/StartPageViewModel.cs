@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using TravelApp.Models;
+using TravelApp.Repository;
 using ViewModel;
 
 namespace TravelApp.ViewModels
@@ -23,8 +24,7 @@ namespace TravelApp.ViewModels
             if(!string.IsNullOrEmpty(username) && username == password)
             {
                 StartToTravelPlanNavigationEventArgs args = new StartToTravelPlanNavigationEventArgs();
-                args.username = username;
-                args.password = password;
+                args.User = DataProvider.getUserdata(username);
                 NavigateToTravelPlanPage?.Invoke(this, args);
             }
         }

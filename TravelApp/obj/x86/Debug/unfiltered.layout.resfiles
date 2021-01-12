@@ -7,6 +7,11 @@ Assets\Wide310x150Logo.scale-200.png
 App.xbf
 TravelApp.xr.xml
 Views\StartPage.xbf
+Views\TravelPlanDetailsPage\ItemFrame.xbf
+Views\TravelPlanDetailsPage\NavWrapperPage.xbf
+Views\TravelPlanDetailsPage\RouteFrame.xbf
+Views\TravelPlanDetailsPage\SettingsFrame.xbf
+Views\TravelPlanDetailsPage\TaskFrame.xbf
 Views\TravelPlanPage.xbf
 Properties\Default.rd.xml
 WinMetadata\Windows.winmd

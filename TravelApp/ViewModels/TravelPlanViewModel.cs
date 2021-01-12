@@ -18,11 +18,11 @@ namespace TravelApp.ViewModels
         {
             get
             {
-                return _user.userName;
+                return _user.UserName;
             }
             set
             {
-                _user.userName = value;
+                _user.UserName = value;
                 RaisePropertyChanged("UserName");
             }
         }
@@ -31,7 +31,7 @@ namespace TravelApp.ViewModels
         {
             get
             {
-                return _user.travelplans;
+                return _user.Travelplans;
             }
         }
 
@@ -46,7 +46,6 @@ namespace TravelApp.ViewModels
             {
                 if(_selectedItem != value)
                 {
-                    _selectedItem = value;
                     Set(ref _selectedItem, value);
                 }
             }
@@ -54,38 +53,47 @@ namespace TravelApp.ViewModels
 
         [PropertySource(nameof(SelectedItem))]
         public bool ControlButtonsVisible => _selectedItem != null;
+
+        public event EventHandler<TravelPlanToNavViewNavigationEventArgs> NavigateToNavViewWrapperPage;
         #endregion
 
 
 
         public TravelPlanViewModel(StartToTravelPlanNavigationEventArgs args)
         {
-            _user = DataProvider.getUserdata(args.username);
+            _user = args.User;
 
         }
 
-        public void onNewTravelPlan()
+        public void OnNewTravelPlan()
         {
             //TODO
             UserName = "New";
         }
 
-        public void onEditTravelPlan()
+        public void OnEditTravelPlan()
         {
             //TODO
             UserName = "Edit " + SelectedItem.Name;
         }
 
-        public void onDeleteTravelPlan()
+        public void OnDeleteTravelPlan()
         {
             //TODO
             UserName = "Delete " + SelectedItem.Name;
         }
 
-        public void onSelectTravelPlan()
+        public void OnSelectTravelPlan()
         {
-            //TODO
-            UserName = "Select " + SelectedItem.Name;
+            if (_selectedItem != null)
+            {
+                TravelPlanToNavViewNavigationEventArgs args = new TravelPlanToNavViewNavigationEventArgs
+                {
+                    User = _user,
+                    SelectedTravelPlanName = _selectedItem.Name
+                };
+                NavigateToNavViewWrapperPage?.Invoke(this, args);
+            }
         }
 
 

@@ -5,4 +5,7 @@
     xmlns:local="using:TravelApp"
     xmlns:vm="using:TravelApp.ViewModels"
     RequestedTheme="Light">
+    <Application.Resources>
+        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+    </Application.Resources>
 </Application>

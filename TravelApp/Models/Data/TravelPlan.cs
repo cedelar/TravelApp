@@ -24,7 +24,7 @@ namespace TravelApp.Models
         {
             get
             {
-                return TaskList.Where(item => item.isChecked == true).Count();
+                return TaskList.Where(item => item.IsChecked == true).Count();
             }
         }
 
@@ -40,7 +40,7 @@ namespace TravelApp.Models
         {
             get
             {
-                return ItemList.Where(item => item.isChecked == true).Count();
+                return ItemList.Where(item => item.IsChecked == true).Count();
             }
         }
         public int TotalItemCount

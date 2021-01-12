@@ -68,7 +68,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{x:Bind Vm.UserName, Mode=OneWay, Converter={StaticResource TitleFormatter}}"
+        <TextBlock Text="{x:Bind _vm.UserName, Mode=OneWay, Converter={StaticResource TitleFormatter}}"
                    Style="{StaticResource titleTextStyle}"
                    Grid.Row="0"/>
         <Button x:Name="NewButton" Grid.Row="1"
@@ -82,8 +82,8 @@
         </Button>
         <ListView x:Name="TravelPlanList" 
                   Grid.Row="2"
-                  ItemsSource="{x:Bind Vm.Travelplans}" 
-                  SelectedItem="{x:Bind Vm.SelectedItem, Mode=TwoWay}"  
+                  ItemsSource="{x:Bind _vm.Travelplans}" 
+                  SelectedItem="{x:Bind _vm.SelectedItem, Mode=TwoWay}"  
                   HorizontalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:TravelPlan">
@@ -156,26 +156,26 @@
                 <TextBlock
                         Grid.Row="1"
                         Style="{StaticResource infoTextStyle}"
-                        Text="{x:Bind Vm.SelectedItem.Name, Mode=OneWay}"
+                        Text="{x:Bind _vm.SelectedItem.Name, Mode=OneWay}"
                         />
                 <TextBlock
                         Grid.Row="2"
                         Style="{StaticResource infoTextStyle}"
-                        Text="{x:Bind Vm.SelectedItem.StartDate, Mode=OneWay, Converter={StaticResource StartdateFormatter}}"
+                        Text="{x:Bind _vm.SelectedItem.StartDate, Mode=OneWay, Converter={StaticResource StartdateFormatter}}"
                         />
                 <TextBlock
                         Grid.Row="3"
                         Style="{StaticResource infoTextStyle}"
-                        Text="{x:Bind Vm.SelectedItem.EndDate, Mode=OneWay, Converter={StaticResource EnddateFormatter}}"
+                        Text="{x:Bind _vm.SelectedItem.EndDate, Mode=OneWay, Converter={StaticResource EnddateFormatter}}"
                         />
                 <TextBlock
                         Grid.Row="4"
                         Style="{StaticResource infoTextStyle}"
-                        Text="{x:Bind Vm.SelectedItem.Destination, Mode=OneWay, Converter={StaticResource DestinationFormatter}}"
+                        Text="{x:Bind _vm.SelectedItem.Destination, Mode=OneWay, Converter={StaticResource DestinationFormatter}}"
                         />
                 <StackPanel Orientation="Horizontal" Grid.Row="5">
                     <Button x:Name="SelectButton" Style="{StaticResource buttonStyle}"
-                            Visibility="{x:Bind Vm.ControlButtonsVisible, Mode=OneWay}" Click="SelectButton_Click">
+                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" Click="SelectButton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/SelectIcon.png" 
                                    Style="{StaticResource iconStyle}"/>
@@ -184,7 +184,7 @@
                         </StackPanel>
                     </Button>
                     <Button x:Name="EditButton" Style="{StaticResource buttonStyle}"
-                            Visibility="{x:Bind Vm.ControlButtonsVisible, Mode=OneWay}" Click="EditButton_Click">
+                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" Click="EditButton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/EditIcon.png" 
                                    Style="{StaticResource iconStyle}"/>
@@ -193,7 +193,7 @@
                         </StackPanel>
                     </Button>
                     <Button x:Name="DeleteButton" Style="{StaticResource buttonStyle}"
-                            Visibility="{x:Bind Vm.ControlButtonsVisible, Mode=OneWay}" Click="DeleteButton_Click">
+                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" Click="DeleteButton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/DeleteIcon.png" 
                                    Style="{StaticResource iconStyle}"/>

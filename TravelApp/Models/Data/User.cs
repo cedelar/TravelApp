@@ -10,18 +10,18 @@ namespace TravelApp.Models
 {
     class User
     {
-        public string userName { get; set; }
-        public ObservableCollection<TravelPlan> travelplans { get; set; }
+        public string UserName { get; set; }
+        public ObservableCollection<TravelPlan> Travelplans { get; set; }
 
         public User(string userName)
         {
-            this.userName = userName ?? throw new ArgumentNullException(nameof(userName));
-            travelplans = new ObservableCollection<TravelPlan>();
+            this.UserName = userName ?? throw new ArgumentNullException(nameof(userName));
+            Travelplans = new ObservableCollection<TravelPlan>();
         }
 
         public void addTravelPlan(TravelPlan travelPlan)
         {
-            travelplans.Add(travelPlan);
+            Travelplans.Add(travelPlan);
         }
     }
 }

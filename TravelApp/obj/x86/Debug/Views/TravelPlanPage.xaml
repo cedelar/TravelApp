@@ -68,7 +68,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock x:ConnectionId='2'                                                                                    
+        <TextBlock x:ConnectionId='2'                                                                                     
                    Style="{StaticResource titleTextStyle}"
                    Grid.Row="0"/>
         <Button x:ConnectionId='3' x:Name="NewButton" Grid.Row="1"
@@ -82,8 +82,8 @@
         </Button>
         <ListView x:ConnectionId='4' x:Name="TravelPlanList" 
                   Grid.Row="2"
-                                                        
-                                                                        
+                                                         
+                                                                         
                   HorizontalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate                              >
@@ -156,26 +156,26 @@
                 <TextBlock x:ConnectionId='5'
                         Grid.Row="1"
                         Style="{StaticResource infoTextStyle}"
-                                                                         
+                                                                          
                         />
                 <TextBlock x:ConnectionId='6'
                         Grid.Row="2"
                         Style="{StaticResource infoTextStyle}"
-                                                                                                                             
+                                                                                                                              
                         />
                 <TextBlock x:ConnectionId='7'
                         Grid.Row="3"
                         Style="{StaticResource infoTextStyle}"
-                                                                                                                         
+                                                                                                                          
                         />
                 <TextBlock x:ConnectionId='8'
                         Grid.Row="4"
                         Style="{StaticResource infoTextStyle}"
-                                                                                                                                 
+                                                                                                                                  
                         />
                 <StackPanel Orientation="Horizontal" Grid.Row="5">
                     <Button x:ConnectionId='9' x:Name="SelectButton" Style="{StaticResource buttonStyle}"
-                                                                                                                  >
+                                                                                                                   >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/SelectIcon.png" 
                                    Style="{StaticResource iconStyle}"/>
@@ -184,7 +184,7 @@
                         </StackPanel>
                     </Button>
                     <Button x:ConnectionId='10' x:Name="EditButton" Style="{StaticResource buttonStyle}"
-                                                                                                                >
+                                                                                                                 >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/EditIcon.png" 
                                    Style="{StaticResource iconStyle}"/>
@@ -193,7 +193,7 @@
                         </StackPanel>
                     </Button>
                     <Button x:ConnectionId='11' x:Name="DeleteButton" Style="{StaticResource buttonStyle}"
-                                                                                                                  >
+                                                                                                                   >
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/DeleteIcon.png" 
                                    Style="{StaticResource iconStyle}"/>

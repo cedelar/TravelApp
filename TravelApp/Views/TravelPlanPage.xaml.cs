@@ -17,13 +17,6 @@ namespace TravelApp.Views
     {
         private TravelPlanViewModel _vm;
 
-        private TravelPlanViewModel Vm
-        {
-            get
-            {
-                return _vm;
-            }
-        }
 
         public TravelPlanPage()
         {
@@ -33,22 +26,27 @@ namespace TravelApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _vm = new TravelPlanViewModel((Models.StartToTravelPlanNavigationEventArgs) e.Parameter);
+
+            _vm.NavigateToNavViewWrapperPage += (s, ea) =>
+            {
+                this.Frame.Navigate(typeof(NavWrapperPage), ea);
+            };
             base.OnNavigatedTo(e);
         }
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
-            Vm.onSelectTravelPlan();
+            _vm.OnSelectTravelPlan();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Vm.onEditTravelPlan();
+            _vm.OnEditTravelPlan();
         }
 
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog dialog = new MessageDialog("Are you sure you want to delete " + Vm.SelectedItem.Name + "?");
+            MessageDialog dialog = new MessageDialog("Are you sure you want to delete " + _vm.SelectedItem.Name + "?");
             dialog.Commands.Add(new UICommand("Yes", null));
             dialog.Commands.Add(new UICommand("No", null));
             dialog.DefaultCommandIndex = 1;
@@ -57,13 +55,13 @@ namespace TravelApp.Views
 
             if (cmd.Label == "Yes")
             {
-                Vm.onDeleteTravelPlan();
+                _vm.OnDeleteTravelPlan();
             }
         }
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            Vm.onNewTravelPlan();
+            _vm.OnNewTravelPlan();
         }
     }
 }

@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>D:\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>22A524416153053347BD588A448F6D62A9A8ED968D3DCE2D029CE5381544E544</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>00FB165746DA5F7530BCC78C73864C901F69F3362DCA24CDA126ABB3C581E128</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>c097af72-92d8-4b90-9af7-bff2afb976e9_1.0.0.0_x86__yzekw4x8qxe1g</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>c097af72-92d8-4b90-9af7-bff2afb976e9_yzekw4x8qxe1g!App</RegisteredUserModeAppID>
     <RegisteredPackageID>c097af72-92d8-4b90-9af7-bff2afb976e9</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-01-11T23:18:29.197</Modified>
+      <Modified>2021-01-12T23:07:31.774</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\TravelApp.exe">
       <PackagePath>entrypoint\TravelApp.exe</PackagePath>
-      <Modified>2021-01-11T23:18:28.673</Modified>
+      <Modified>2021-01-12T23:07:25.079</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\user\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.11\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -90,6 +90,14 @@
       <PackagePath>Assets\LoginIcon.png</PackagePath>
       <Modified>2021-01-11T22:23:53.363</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\Assets\BackIcon.png">
+      <PackagePath>Assets\BackIcon.png</PackagePath>
+      <Modified>2021-01-12T20:45:33.892</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\Assets\LogoutIcon.png">
+      <PackagePath>Assets\LogoutIcon.png</PackagePath>
+      <Modified>2021-01-12T20:46:32.177</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2021-01-08T15:31:06.014</Modified>
@@ -125,34 +133,107 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\TravelApp.xr.xml">
       <PackagePath>TravelApp.xr.xml</PackagePath>
-      <Modified>2021-01-11T22:47:56.118</Modified>
+      <Modified>2021-01-12T23:07:23.883</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-01-11T23:18:28.505</Modified>
+      <Modified>2021-01-12T23:07:24.305</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\ItemFrame.xbf">
+      <PackagePath>Views\TravelPlanDetailsPage\ItemFrame.xbf</PackagePath>
+      <Modified>2021-01-12T23:07:24.306</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\NavWrapperPage.xbf">
+      <PackagePath>Views\TravelPlanDetailsPage\NavWrapperPage.xbf</PackagePath>
+      <Modified>2021-01-12T23:07:24.306</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\StartPage.xbf">
       <PackagePath>Views\StartPage.xbf</PackagePath>
-      <Modified>2021-01-11T23:18:28.505</Modified>
+      <Modified>2021-01-12T23:07:24.306</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\RouteFrame.xbf">
+      <PackagePath>Views\TravelPlanDetailsPage\RouteFrame.xbf</PackagePath>
+      <Modified>2021-01-12T23:07:24.306</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\SettingsFrame.xbf">
+      <PackagePath>Views\TravelPlanDetailsPage\SettingsFrame.xbf</PackagePath>
+      <Modified>2021-01-12T23:07:24.307</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\TaskFrame.xbf">
+      <PackagePath>Views\TravelPlanDetailsPage\TaskFrame.xbf</PackagePath>
+      <Modified>2021-01-12T23:07:24.307</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanPage.xbf">
       <PackagePath>Views\TravelPlanPage.xbf</PackagePath>
-      <Modified>2021-01-11T23:18:28.505</Modified>
+      <Modified>2021-01-12T23:07:24.305</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.18362.0\\redist\Debug\x86\ucrtbased.dll">
+      <PackagePath>ucrtbased.dll</PackagePath>
+      <Modified>2019-03-18T17:43:58.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2019-03-18T16:33:42.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\lib\uap10.0\Microsoft.UI.Xaml.winmd">
+      <PackagePath>WinMetadata\Microsoft.UI.Xaml.winmd</PackagePath>
+      <Modified>2020-12-03T08:46:54.000</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2021-01-11T23:11:04.093</Modified>
+      <Modified>2021-01-12T20:42:51.035</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Core\TravelApp.exe">
       <PackagePath>TravelApp.exe</PackagePath>
-      <Modified>2021-01-11T23:18:29.192</Modified>
+      <Modified>2021-01-12T23:07:31.681</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.5.appx">
+      <Name>Microsoft.UI.Xaml.2.5</Name>
+      <Version>2.52012.2002.0</Version>
+      <Architecture>x86</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.5, MinVersion = 2.52012.2002.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.5.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.5.appx">
+      <Name>Microsoft.UI.Xaml.2.5</Name>
+      <Version>2.52012.2002.0</Version>
+      <Architecture>Win32</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.5, MinVersion = 2.52012.2002.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\x86\Release\Microsoft.UI.Xaml.2.5.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.5.appx">
+      <Name>Microsoft.UI.Xaml.2.5</Name>
+      <Version>2.52012.2002.0</Version>
+      <Architecture>x64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.5, MinVersion = 2.52012.2002.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.5.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.5.appx">
+      <Name>Microsoft.UI.Xaml.2.5</Name>
+      <Version>2.52012.2002.0</Version>
+      <Architecture>arm</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.5, MinVersion = 2.52012.2002.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\arm\Release\Microsoft.UI.Xaml.2.5.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.5.appx">
+      <Name>Microsoft.UI.Xaml.2.5</Name>
+      <Version>2.52012.2002.0</Version>
+      <Architecture>arm64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.UI.Xaml.2.5, MinVersion = 2.52012.2002.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
+      <AppxLocation>C:\Users\user\.nuget\packages\microsoft.ui.xaml\2.5.0\buildTransitive\..\tools\AppX\arm64\Release\Microsoft.UI.Xaml.2.5.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
     <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.11\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27902.3</Version>
