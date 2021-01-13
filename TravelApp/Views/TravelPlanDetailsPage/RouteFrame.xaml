@@ -5,10 +5,72 @@
     xmlns:local="using:TravelApp.Views.TravelPlanDetailsPage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:TravelApp.Models"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Style x:Key="nameTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="350"/>
+        </Style>
+        <Style x:Key="descriptionTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Width" Value="350"/>
+        </Style>
+    </Page.Resources>
+
     <Grid>
-        <TextBlock Text="RouteFrame" FontSize="100"/>
+        <StackPanel x:Name="MainStackPanel"
+                    Orientation="Horizontal">
+            <ListView x:Name="TravelRouteList" 
+                      ItemsSource="{x:Bind _vm.RouteList, Mode=OneWay}" 
+                      SelectedItem="{x:Bind _vm.SelectedRoute, Mode=TwoWay}"
+                      Width="400">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:TravelRoute">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                   Style="{StaticResource nameTextStyle}"/>
+                            <TextBlock Text="{x:Bind Description, Mode=OneWay}"
+                                   Style="{StaticResource descriptionTextStyle}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Border BorderThickness="1,0,0,0" 
+                    BorderBrush="#c0c0c0"
+                    Padding="30,0,0,0">
+                <StackPanel>
+                    <ListView x:Name="TravelLocationList" 
+                              ItemsSource="{x:Bind _vm.LocationList, Mode=OneWay}" 
+                              SelectedItem="{x:Bind _vm.SelectedLocation, Mode=TwoWay}"
+                              Height="500"
+                              Width="400">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:TravelLocation">
+                                <StackPanel>
+                                    <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                   Style="{StaticResource nameTextStyle}"/>
+                                    <TextBlock Text="{x:Bind GetCoordinateString(), Mode=OneWay}"
+                                   Style="{StaticResource descriptionTextStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Maps:MapControl x:Name="LocationMap"
+                                     Style="Terrain"
+                                     ZoomInteractionMode="GestureAndControl"
+                                     MapServiceToken="1KdhtVBnzG47XhmAM5jw~gRRcuAmD5uOd5vTQCzMdEw~AgpRYMnx8z7FKaoSpjCYiutaPV6SAXj4Qju__oIPWF8XLg4IIQvfj-dpns8CZezd"
+                                     Width="400"
+                                     Height="400"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </Page>

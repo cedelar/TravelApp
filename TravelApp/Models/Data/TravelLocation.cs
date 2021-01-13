@@ -8,13 +8,24 @@ namespace TravelApp.Models
 {
     class TravelLocation
     {
-        public string name { get; set; }
-        public string adress { get; set; }
 
-        public TravelLocation(string name, string adress)
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
+        public TravelLocation(string name, string location)
         {
-            this.name = name ?? throw new ArgumentNullException(nameof(name));
-            this.adress = adress ?? throw new ArgumentNullException(nameof(adress));
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Location = location ?? throw new ArgumentNullException(nameof(location));
+            double[] coords = Geolocator.getCoordinatesAsync(Location).Result;
+            Latitude = coords[0];
+            Longitude = coords[1];
+        }
+
+        public String GetCoordinateString()
+        {
+            return Latitude + "° Latitude, " + Longitude + "° Longitude";
         }
     }
 }

@@ -63,6 +63,8 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="GroupStyle" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
       <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
@@ -148,6 +150,19 @@
       <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="TravelApp.Views.StartPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="Child" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Maps.MapControl">
+      <RootProperty Name="Style" />
+      <RootProperty Name="ZoomInteractionMode" />
+      <RootProperty Name="MapServiceToken" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+    </RootType>
     <RootType FullName="TravelApp.Views.TravelPlanDetailsPage.RouteFrame" />
     <RootType FullName="TravelApp.Views.TravelPlanDetailsPage.SettingsFrame" />
     <RootType FullName="TravelApp.Converters.PriorityToColorConverter" />
@@ -168,11 +183,6 @@
     <RootType FullName="TravelApp.Converters.DestinationFormatter" />
     <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
       <RootProperty Name="Height" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Border">
-      <RootProperty Name="BorderThickness" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="Child" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
       <RootProperty Name="Width" />

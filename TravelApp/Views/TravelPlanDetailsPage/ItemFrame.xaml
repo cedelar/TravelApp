@@ -30,8 +30,7 @@
     </Page.Resources>
     
     <Grid>
-        <ListView x:Name="TravelPlanList" 
-                  Grid.Row="2"
+        <ListView x:Name="TravelItemList" 
                   ItemsSource="{x:Bind cvsTravelItems.View, Mode=OneWay}" 
                   SelectedItem="{x:Bind _vm.SelectedItem, Mode=TwoWay}"  
                   HorizontalAlignment="Stretch">

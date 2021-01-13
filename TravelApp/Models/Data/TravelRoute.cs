@@ -9,20 +9,24 @@ namespace TravelApp.Models
 {
     class TravelRoute
     {
-        public string name { get; set; }
-        public ObservableCollection<TravelLocation> locations { get; private set; }
-        public string description { get; set; }
+        public string Name { get; set; }
+        public ObservableCollection<TravelLocation> Locations { get; private set; }
+        public string Description { get; set; }
 
-        public TravelRoute(string name, string description)
+        public TravelRoute(string name, string description, ObservableCollection<TravelLocation> locations)
         {
-            this.name = name ?? throw new ArgumentNullException(nameof(name));
-            this.description = description;
-            this.locations = new ObservableCollection<TravelLocation>();
+            this.Name = name ?? throw new ArgumentNullException(nameof(name));
+            this.Description = description;
+            this.Locations = locations;
         }
 
-        public void addTravelLocation(TravelLocation travelLocation)
+        public TravelRoute(string name, string description): this(name, description, new ObservableCollection<TravelLocation>())
         {
-            locations.Add(travelLocation);
+        }
+
+        public void AddTravelLocation(TravelLocation travelLocation)
+        {
+            Locations.Add(travelLocation);
         }
     }
 }

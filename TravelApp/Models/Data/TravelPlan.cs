@@ -54,7 +54,7 @@ namespace TravelApp.Models
         {
             get
             {
-                return RouteList.Select(l => l.locations.Count()).Sum();
+                return RouteList.Select(l => l.Locations.Count()).Sum();
             }
         }
         #endregion

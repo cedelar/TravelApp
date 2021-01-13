@@ -30,8 +30,7 @@
     </Page.Resources>
     
     <Grid>
-        <ListView x:ConnectionId='3' x:Name="TravelPlanList" 
-                  Grid.Row="2"
+        <ListView x:ConnectionId='3' x:Name="TravelItemList" 
                                                                           
                                                                          
                   HorizontalAlignment="Stretch">

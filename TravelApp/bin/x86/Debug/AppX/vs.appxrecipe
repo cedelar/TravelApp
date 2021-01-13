@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2021-01-12T23:07:31.774</Modified>
+      <Modified>2021-01-13T22:28:05.268</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\TravelApp.exe">
       <PackagePath>entrypoint\TravelApp.exe</PackagePath>
-      <Modified>2021-01-12T23:07:25.079</Modified>
+      <Modified>2021-01-13T22:28:03.781</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\user\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.11\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -133,39 +133,39 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\TravelApp.xr.xml">
       <PackagePath>TravelApp.xr.xml</PackagePath>
-      <Modified>2021-01-12T23:07:23.883</Modified>
+      <Modified>2021-01-13T19:56:30.359</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.305</Modified>
+      <Modified>2021-01-13T22:27:26.388</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\ItemFrame.xbf">
       <PackagePath>Views\TravelPlanDetailsPage\ItemFrame.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.306</Modified>
+      <Modified>2021-01-13T22:27:26.388</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\NavWrapperPage.xbf">
       <PackagePath>Views\TravelPlanDetailsPage\NavWrapperPage.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.306</Modified>
+      <Modified>2021-01-13T22:27:26.388</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\StartPage.xbf">
       <PackagePath>Views\StartPage.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.306</Modified>
+      <Modified>2021-01-13T22:27:26.388</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\RouteFrame.xbf">
       <PackagePath>Views\TravelPlanDetailsPage\RouteFrame.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.306</Modified>
+      <Modified>2021-01-13T22:27:26.389</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\SettingsFrame.xbf">
       <PackagePath>Views\TravelPlanDetailsPage\SettingsFrame.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.307</Modified>
+      <Modified>2021-01-13T22:27:26.389</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanDetailsPage\TaskFrame.xbf">
       <PackagePath>Views\TravelPlanDetailsPage\TaskFrame.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.307</Modified>
+      <Modified>2021-01-13T22:27:26.389</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Views\TravelPlanPage.xbf">
       <PackagePath>Views\TravelPlanPage.xbf</PackagePath>
-      <Modified>2021-01-12T23:07:24.305</Modified>
+      <Modified>2021-01-13T22:27:26.388</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.18362.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -181,11 +181,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2021-01-12T20:42:51.035</Modified>
+      <Modified>2021-01-13T21:19:33.628</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\School_Toeg_Inf\Sem_3\NA2_Windows\Opdracht_App\TravelApp\TravelApp\bin\x86\Debug\Core\TravelApp.exe">
       <PackagePath>TravelApp.exe</PackagePath>
-      <Modified>2021-01-12T23:07:31.681</Modified>
+      <Modified>2021-01-13T22:28:05.262</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
