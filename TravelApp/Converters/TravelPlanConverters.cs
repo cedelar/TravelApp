@@ -27,7 +27,7 @@ namespace TravelApp.Converters
             {
                 return "Startdate: Unknown";
             }
-            return "Startdate: " + date.ToShortDateString();
+            return "Startdate: " + date.ToString("dd/MM/yyyy");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -45,7 +45,7 @@ namespace TravelApp.Converters
             {
                 return "Enddate: Unknown";
             }
-            return "Enddate: " + date.ToShortDateString();
+            return "Enddate: " + date.ToString("dd/MM/yyyy");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

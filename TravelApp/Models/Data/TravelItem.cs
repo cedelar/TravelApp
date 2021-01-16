@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,27 @@ using System.Threading.Tasks;
 
 namespace TravelApp.Models
 {
-    class TravelItem
+    public class TravelItem
     {
         public string Name { get; set; }
         public bool IsChecked { get; set; }
         public int Amount { get; set; }
         public string Category { get; set; }
 
-        public TravelItem(string naam, int amount, string category)
+        [JsonConstructor]
+        public TravelItem(string name, int amount, string category)
         {
-            this.Name = naam ?? throw new ArgumentNullException(nameof(naam));
+            this.Name = name ?? throw new ArgumentNullException(nameof(name));
             this.Amount = amount;
             this.Category = category ?? throw new ArgumentNullException(nameof(category));
             IsChecked = false;
         }
 
-        public TravelItem(string naam) : this(naam, 0, "default") { }
+        public TravelItem(string naam) : this(naam, 0, "No Category") { }
 
         public override string ToString()
         {
-            return Name + " (" + Amount + ")";
+            return Name + " (" + Amount + ") " + Category;
         }
 
     }

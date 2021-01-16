@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace TravelApp.Models
 {
-    class TravelPlan
+    public class TravelPlan
     {
         #region properties
         public string Name { get; set; }
-
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Destination  { get; set; }
@@ -59,16 +59,22 @@ namespace TravelApp.Models
         }
         #endregion
 
-        public TravelPlan(string name)
+        public TravelPlan(string name) : this(name, new DateTime(), new DateTime(), null)
+        {
+        }
+
+        [JsonConstructor]
+        public TravelPlan(string name, DateTime startDate, DateTime endDate, string destination)
         {
             this.Name = name ?? throw new ArgumentNullException(nameof(name));
-            this.StartDate = new DateTime();
-            this.EndDate = new DateTime();
-            this.Destination = "-";
+            this.StartDate = startDate == null ? new DateTime() : startDate;
+            this.EndDate = endDate == null ? new DateTime() : endDate;
+            this.Destination = destination == null ? "-" : destination;
             ItemList = new ObservableCollection<TravelItem>();
             TaskList = new ObservableCollection<TravelTask>();
             RouteList = new ObservableCollection<TravelRoute>();
         }
+
 
         public void AddTravelItem(TravelItem travelItem)
         {

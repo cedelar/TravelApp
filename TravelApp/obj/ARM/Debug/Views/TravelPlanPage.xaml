@@ -1,0 +1,209 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="TravelApp.Views.TravelPlanPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TravelApp.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:TravelApp.Converters"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="titleTextStyle" TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="70"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="mainTextStyle" TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="50"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="subTextStyle" TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="30"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
+        <Style x:Key="infoTextStyle" TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="30"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="iconStyle" TargetType="Image">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style x:Key="buttonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <converters:TitleFormatter x:Key="TitleFormatter"/>
+        <converters:StartdateFormatter x:Key="StartdateFormatter"/>
+        <converters:EnddateFormatter x:Key="EnddateFormatter"/>
+        <converters:DestinationFormatter x:Key="DestinationFormatter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:ConnectionId='2'                                                                                     
+                   Style="{StaticResource titleTextStyle}"
+                   Grid.Row="0"/>
+        <Button x:ConnectionId='3' x:Name="NewButton" Grid.Row="1"
+                Style="{StaticResource buttonStyle}"                        >
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Assets/AddIcon.png" 
+                       Style="{StaticResource iconStyle}"/>
+                <TextBlock Text="New"
+                           Style="{StaticResource buttonTextStyle}"/>
+            </StackPanel>
+        </Button>
+        <ListView x:ConnectionId='4' x:Name="TravelPlanList" 
+                  Grid.Row="2"
+                                                         
+                                                                         
+                  HorizontalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate                              >
+                    <Border x:ConnectionId='13' BorderThickness="0,0,0,1" BorderBrush="#c0c0c0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:ConnectionId='14' Grid.Row="0"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="7"
+                                                           
+                                       Style="{StaticResource mainTextStyle}"/>
+                            <Image Grid.Row="1"
+                                   Grid.Column="1" 
+                                   Source="/Assets/ItemIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock x:ConnectionId='15' Grid.Row="1"
+                                       Grid.Column="2"
+                                                                             
+                                       Style="{StaticResource subTextStyle}"/>
+                            <Image Grid.Row="1"
+                                   Grid.Column="3" 
+                                   Source="/Assets/TaskIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock x:ConnectionId='16' Grid.Row="1"
+                                       Grid.Column="4"
+                                                                             
+                                       Style="{StaticResource subTextStyle}"/>
+                            <Image Grid.Row="1"
+                                   Grid.Column="5" 
+                                   Source="/Assets/LocationIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock x:ConnectionId='17' Grid.Row="1"
+                                       Grid.Column="6"
+                                                                         
+                                       Style="{StaticResource subTextStyle}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Border BorderThickness="0,3,0,0" BorderBrush="Black" Grid.Row="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock
+                        Grid.Row="0"
+                        Style="{StaticResource infoTextStyle}"
+                        TextDecorations="Underline"
+                        Text="Details:"
+                        />
+                <TextBlock x:ConnectionId='5'
+                        Grid.Row="1"
+                        Style="{StaticResource infoTextStyle}"
+                                                                          
+                        />
+                <TextBlock x:ConnectionId='6'
+                        Grid.Row="2"
+                        Style="{StaticResource infoTextStyle}"
+                                                                                                                              
+                        />
+                <TextBlock x:ConnectionId='7'
+                        Grid.Row="3"
+                        Style="{StaticResource infoTextStyle}"
+                                                                                                                          
+                        />
+                <TextBlock x:ConnectionId='8'
+                        Grid.Row="4"
+                        Style="{StaticResource infoTextStyle}"
+                                                                                                                                  
+                        />
+                <StackPanel Orientation="Horizontal" Grid.Row="5">
+                    <Button x:ConnectionId='9' x:Name="SelectButton" Style="{StaticResource buttonStyle}"
+                                                                                                                   >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/SelectIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock Text="Select"
+                                       Style="{StaticResource buttonTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:ConnectionId='10' x:Name="EditButton" Style="{StaticResource buttonStyle}"
+                                                                                                                 >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/EditIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock Text="Edit"
+                                       Style="{StaticResource buttonTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:ConnectionId='11' x:Name="DeleteButton" Style="{StaticResource buttonStyle}"
+                                                                                                                   >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/DeleteIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock Text="Delete"
+                                       Style="{StaticResource buttonTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
+

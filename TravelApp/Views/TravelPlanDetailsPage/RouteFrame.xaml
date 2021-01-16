@@ -25,9 +25,9 @@
         </Style>
     </Page.Resources>
 
+
     <Grid>
-        <StackPanel x:Name="MainStackPanel"
-                    Orientation="Horizontal">
+        <StackPanel x:Name="MainStackPanel">
             <ListView x:Name="TravelRouteList" 
                       ItemsSource="{x:Bind _vm.RouteList, Mode=OneWay}" 
                       SelectedItem="{x:Bind _vm.SelectedRoute, Mode=TwoWay}"
@@ -72,5 +72,17 @@
                 </StackPanel>
             </Border>
         </StackPanel>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainStackPanel.Orientation" Value="Horizontal"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

@@ -34,7 +34,9 @@ namespace TravelApp.Views
 
         private void AddButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            _vm.onAddUser();
+            _vm.OnAddUser(newNameInput.Text, newPasswordInput.Text);
+            newNameInput.Text = "";
+            newPasswordInput.Text = "";
         }
     }
 }

@@ -23,11 +23,48 @@
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Width" Value="350"/>
         </Style>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style x:Key="buttonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="messageTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+        </Style>
+        <Style x:Key="iconStyle" TargetType="Image">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
         <converters:PriorityToColorConverter x:Key="ColorConverter"/>
     </Page.Resources>
 
     <Grid>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel Margin="20,0,0,0">
+                <TextBlock Text="{x:Bind _vm.Message, Mode=OneWay}"
+                       Style="{StaticResource messageTextStyle}"
+                   />
+                <ProgressRing x:Name="LoadingIndicator"
+                          IsActive="{x:Bind _vm.IsLoading, Mode=OneWay}"
+                          Margin="0,10,0,0"
+                          HorizontalAlignment="Left"/>
+            </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Order By:"/>
                 <ComboBox x:Name="OrderBySelect" 
@@ -37,29 +74,83 @@
                     <x:String>Name</x:String>
                 </ComboBox>
             </StackPanel>
-            <ListView x:Name="TaskList" 
-                      ItemsSource="{x:Bind _vm.SortedTaskList, Mode=OneWay}" 
-                      SelectedItem="{x:Bind _vm.SelectedItem, Mode=TwoWay}"  
-                      HorizontalAlignment="Stretch"
-                      Margin="0,30,0,0">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:TravelTask">
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                           Style="{StaticResource nameTextStyle}"/>
-                                <TextBlock Text="{x:Bind Description, Mode=OneWay}"
-                                           Style="{StaticResource descriptionTextStyle}"/>
-                            </StackPanel>
-                            <CheckBox IsChecked="{x:Bind IsChecked, Mode=TwoWay}"/>
-                            <StackPanel.Background>
-                                <SolidColorBrush Color="{x:Bind Priority, Converter={StaticResource ColorConverter}}"
-                                                 Opacity="0.25"/>
-                            </StackPanel.Background>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
         </StackPanel>
+        <ListView x:Name="TaskList" 
+                  ItemsSource="{x:Bind _vm.SortedTaskList, Mode=OneWay}" 
+                  SelectedItem="{x:Bind _vm.SelectedItem, Mode=TwoWay}"  
+                  HorizontalAlignment="Stretch"
+                  Margin="0,30,0,0"
+                  Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:TravelTask">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                           Style="{StaticResource nameTextStyle}"/>
+                            <TextBlock Text="{x:Bind Description, Mode=OneWay}"
+                                           Style="{StaticResource descriptionTextStyle}"/>
+                        </StackPanel>
+                        <CheckBox IsChecked="{x:Bind IsChecked, Mode=TwoWay}"/>
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="{x:Bind Priority, Converter={StaticResource ColorConverter}}"
+                                                 Opacity="0.25"/>
+                        </StackPanel.Background>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Border Grid.Row="2"
+                BorderThickness="0,3,0,0" 
+                BorderBrush="Black">
+            <StackPanel>
+                <TextBox 
+                     x:Name="nameInput"
+                     Header="Name traveltask:"
+                     PlaceholderText="Name"
+                     Margin="0,10,0,0"
+                     Visibility="{x:Bind _vm.ShowNewTaskFields, Mode=OneWay}"/>
+                <TextBox 
+                     x:Name="descriptionInput"
+                     Header="Description:"
+                     PlaceholderText="Description"
+                     Margin="0,10,0,0"
+                     Visibility="{x:Bind _vm.ShowNewTaskFields, Mode=OneWay}"/>
+                <ComboBox
+                    x:Name="priorityInput"
+                    Header="Priority:"
+                    Margin="0,10,0,0"
+                    Visibility="{x:Bind _vm.ShowNewTaskFields, Mode=OneWay}">
+                    <x:String>Low</x:String>
+                    <x:String>Normal</x:String>
+                    <x:String>High</x:String>
+                    <x:String>Very High</x:String>
+                </ComboBox>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="NewButton"
+                            Style="{StaticResource buttonStyle}" 
+                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}"
+                            Click="NewButton_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/AddIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock Text="New"
+                                       Style="{StaticResource buttonTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="CloseButton"
+                            Style="{StaticResource buttonStyle}" 
+                            Visibility="{x:Bind _vm.ShowNewTaskFields, Mode=OneWay}"
+                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}" 
+                            Click="CloseButton_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/CloseIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock Text="Close"
+                                       Style="{StaticResource buttonTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

@@ -5,7 +5,7 @@
     xmlns:local="using:TravelApp.Views.TravelPlanDetailsPage"
     xmlns:models="using:TravelApp.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -27,13 +27,52 @@
             <Setter Property="Width" Value="50"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style x:Key="buttonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="messageTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+        </Style>
+        <Style x:Key="iconStyle" TargetType="Image">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
     </Page.Resources>
-    
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Margin="20,0,0,0">
+            <TextBlock Text="{x:Bind _vm.Message, Mode=OneWay}"
+                       Style="{StaticResource messageTextStyle}"
+                   />
+            <ProgressRing x:Name="LoadingIndicator"
+                          IsActive="{x:Bind _vm.IsLoading, Mode=OneWay}"
+                          Margin="0,10,0,0"
+                          HorizontalAlignment="Left"/>
+        </StackPanel>
         <ListView x:Name="TravelItemList" 
                   ItemsSource="{x:Bind cvsTravelItems.View, Mode=OneWay}" 
                   SelectedItem="{x:Bind _vm.SelectedItem, Mode=TwoWay}"  
-                  HorizontalAlignment="Stretch">
+                  HorizontalAlignment="Stretch"
+                  Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:TravelItem">
                     <StackPanel Orientation="Horizontal">
@@ -56,5 +95,53 @@
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
+        <Border Grid.Row="2"
+                BorderThickness="0,3,0,0" 
+                BorderBrush="Black">
+            <StackPanel>
+                <TextBox 
+                     x:Name="nameInput"
+                     Header="Name travelitem:"
+                     PlaceholderText="Name"
+                     Margin="0,10,0,0"
+                     Visibility="{x:Bind _vm.ShowNewItemFields, Mode=OneWay}"/>
+                <controls:NumberBox
+                    x:Name="amountInput"
+                    Header="Amount:"
+                    PlaceholderText="Amount"
+                    Margin="0,10,0,0"
+                    Visibility="{x:Bind _vm.ShowNewItemFields, Mode=OneWay}"/>
+                <TextBox 
+                     x:Name="categoryInput"
+                     Header="Category:"
+                     PlaceholderText="Category"
+                     Margin="0,10,0,0"
+                     Visibility="{x:Bind _vm.ShowNewItemFields, Mode=OneWay}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="NewButton"
+                            Style="{StaticResource buttonStyle}" 
+                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}"
+                            Click="NewButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/AddIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock Text="New"
+                                       Style="{StaticResource buttonTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="CloseButton"
+                            Style="{StaticResource buttonStyle}" 
+                            Visibility="{x:Bind _vm.ShowNewItemFields, Mode=OneWay}"
+                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}" Click="CloseButton_Click" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Assets/CloseIcon.png" 
+                                   Style="{StaticResource iconStyle}"/>
+                            <TextBlock Text="Close"
+                                       Style="{StaticResource buttonTextStyle}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

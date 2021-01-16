@@ -31,8 +31,21 @@ namespace TravelApp.Views.TravelPlanDetailsPage
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _vm = new ItemFrameViewModel((Models.NavViewItemsEventArgs)e.Parameter);
+            _vm = new ItemFrameViewModel((Models.NavViewNavigationEventArgs)e.Parameter);
             base.OnNavigatedTo(e);
+        }
+
+        private void NewButton_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.OnNewClicked(nameInput.Text, (int) amountInput.Value, categoryInput.Text);
+            nameInput.Text = "";
+            amountInput.Value = 0.0;
+            categoryInput.Text = "";
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.OnCloseClicked();
         }
     }
 }

@@ -36,7 +36,7 @@ namespace TravelApp.Views.TravelPlanDetailsPage
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _vm = new RouteFrameViewModel((Models.NavViewRoutesEventArgs) e.Parameter);
+            _vm = new RouteFrameViewModel((Models.NavViewNavigationEventArgs) e.Parameter);
             _vm.RequestMapUpdate += (s, ea) =>
             {
                 UpdateMapAsync();
@@ -45,9 +45,11 @@ namespace TravelApp.Views.TravelPlanDetailsPage
             base.OnNavigatedTo(e);
         }
 
+
+
         private async void UpdateMapAsync()
         {
-            LocationMap.MapElements.Clear();
+            /*LocationMap.MapElements.Clear();
             BasicGeoposition queryHint = new BasicGeoposition();
             queryHint.Latitude = Models.Geolocator.LatitudeHint;
             queryHint.Longitude = Models.Geolocator.LongitudeHint;
@@ -71,11 +73,16 @@ namespace TravelApp.Views.TravelPlanDetailsPage
                     });
 
                 }
+                Geopoint point = new Geopoint(new BasicGeoposition
+                {
+                    Latitude = _vm.LocationList[i].Latitude,
+                    Longitude = _vm.LocationList[i].Longitude
+                });
                 try
                 {
                     MapIcon mapicon = new MapIcon
                     {
-                        Location = geopoint,
+                        Location = point,
                         NormalizedAnchorPoint = new Point(0.5, 1.0),
                         Title = _vm.LocationList[i].Name,
                         ZIndex = 0
@@ -89,10 +96,10 @@ namespace TravelApp.Views.TravelPlanDetailsPage
 
                 if(_vm.SelectedLocation != null &&_vm.SelectedLocation.Name == _vm.LocationList[i].Name)
                 {
-                    LocationMap.Center = geopoint;
+                    LocationMap.Center = point;
                 }
             }
-            LocationMap.ZoomLevel = 10;
+            LocationMap.ZoomLevel = 10;*/
         }
 
         public void Maptest()

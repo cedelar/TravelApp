@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a9FVzc7+v8S9xx67x3guzOBHEV5rCTxg7IyJKa0i56YbJCxvmKLcPJ9vnDRdfFzmnEYKuPxA7yPlzbtkUIWj+A==",
+  "dgSpecHash": "gZYpQYgYY0s4GByTk9Q65TvwIwSHwbE8l77XVZ6EDRcKil6mLZq0FTAJ8IrFrULb4TlG1e0EsmAEMc/jIwVKdQ==",
   "success": true,
   "projectFilePath": "D:\\School_Toeg_Inf\\Sem_3\\NA2_Windows\\Opdracht_App\\TravelApp\\TravelApp\\TravelApp.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.universalwindowsplatform\\6.2.11\\microsoft.netcore.universalwindowsplatform.6.2.11.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.ui.xaml\\2.5.0\\microsoft.ui.xaml.2.5.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform\\6.2.11\\runtime.win10-arm-aot.microsoft.netcore.universalwindowsplatform.6.2.11.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\runtime.win10-arm.microsoft.net.native.compiler\\2.2.9-rel-29512-01\\runtime.win10-arm.microsoft.net.native.compiler.2.2.9-rel-29512-01.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\runtime.win10-arm.microsoft.net.native.sharedlibrary\\2.2.8-rel-29512-01\\runtime.win10-arm.microsoft.net.native.sharedlibrary.2.2.8-rel-29512-01.nupkg.sha512",

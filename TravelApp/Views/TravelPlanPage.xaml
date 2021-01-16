@@ -13,7 +13,6 @@
         <Style x:Key="titleTextStyle" TargetType="TextBlock">
             <Setter Property="LineHeight" Value="70"/>
             <Setter Property="FontSize" Value="50"/>
-            <Setter Property="Margin" Value="20,0,0,0"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="mainTextStyle" TargetType="TextBlock">
@@ -55,6 +54,11 @@
             <Setter Property="Margin" Value="10,0,0,0"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
+        <Style x:Key="messageTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+        </Style>
         <converters:TitleFormatter x:Key="TitleFormatter"/>
         <converters:StartdateFormatter x:Key="StartdateFormatter"/>
         <converters:EnddateFormatter x:Key="EnddateFormatter"/>
@@ -68,21 +72,69 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{x:Bind _vm.UserName, Mode=OneWay, Converter={StaticResource TitleFormatter}}"
-                   Style="{StaticResource titleTextStyle}"
-                   Grid.Row="0"/>
-        <Button x:Name="NewButton" Grid.Row="1"
-                Style="{StaticResource buttonStyle}" Click="NewButton_Click">
+        <StackPanel Grid.Row="0"
+                    Margin="20,0,0,0">
+            <TextBlock Text="{x:Bind _vm.UserName, Mode=OneWay, Converter={StaticResource TitleFormatter}}"
+                       Style="{StaticResource titleTextStyle}"
+                   />
+            <TextBlock Text="{x:Bind _vm.Message, Mode=OneWay}"
+                       Style="{StaticResource messageTextStyle}"
+                   />
+            <ProgressRing x:Name="LoadingIndicator"
+                          IsActive="{x:Bind _vm.IsLoading, Mode=OneWay}"
+                          Margin="0,10,0,0"
+                          HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Width="350"
+                    HorizontalAlignment="Left"
+                    Margin="10,0,0,0">
+            <TextBox x:Name="nameInput"
+                     Header="Name travelplan:"
+                     PlaceholderText="Name"
+                     Margin="0,10,0,0"
+                     Visibility="{x:Bind _vm.ShowNewTravelPlanFields, Mode=OneWay}"/>
+            <DatePicker x:Name="startDatePicker"
+                        Header="Startdate:"
+                        Margin="0,10,0,0"
+                        Visibility="{x:Bind _vm.ShowNewTravelPlanFields, Mode=OneWay}"/>
+            <DatePicker x:Name="endDatePicker"
+                        Header="Enddate:"
+                        Margin="0,10,0,0"
+                        Visibility="{x:Bind _vm.ShowNewTravelPlanFields, Mode=OneWay}"/>
+            <TextBox x:Name="destinationInput"
+                     Header="Destination:"
+                     PlaceholderText="Destination"
+                     Margin="0,10,0,0"
+                     Visibility="{x:Bind _vm.ShowNewTravelPlanFields, Mode=OneWay}"/>
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Assets/AddIcon.png" 
-                       Style="{StaticResource iconStyle}"/>
-                <TextBlock Text="New"
-                           Style="{StaticResource buttonTextStyle}"/>
+                <Button x:Name="NewButton"
+                    Style="{StaticResource buttonStyle}" 
+                    Click="NewButton_Click"
+                    IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/AddIcon.png" 
+                           Style="{StaticResource iconStyle}"/>
+                        <TextBlock Text="New"
+                               Style="{StaticResource buttonTextStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="CloseButton"
+                    Style="{StaticResource buttonStyle}" 
+                    Visibility="{x:Bind _vm.ShowNewTravelPlanFields, Mode=OneWay}"
+                    IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}" Click="CloseButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Assets/CloseIcon.png" 
+                           Style="{StaticResource iconStyle}"/>
+                        <TextBlock Text="Close"
+                               Style="{StaticResource buttonTextStyle}"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
-        </Button>
+        </StackPanel>
         <ListView x:Name="TravelPlanList" 
                   Grid.Row="2"
-                  ItemsSource="{x:Bind _vm.Travelplans}" 
+                  ItemsSource="{x:Bind _vm.Travelplans, Mode=OneWay}" 
                   SelectedItem="{x:Bind _vm.SelectedItem, Mode=TwoWay}"  
                   HorizontalAlignment="Stretch">
             <ListView.ItemTemplate>
@@ -137,45 +189,37 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Border BorderThickness="0,3,0,0" BorderBrush="Black" Grid.Row="3">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+        <Border BorderThickness="0,3,0,0" 
+                BorderBrush="Black" 
+                Grid.Row="3">
+            <StackPanel>
                 <TextBlock
-                        Grid.Row="0"
                         Style="{StaticResource infoTextStyle}"
                         TextDecorations="Underline"
                         Text="Details:"
                         />
                 <TextBlock
-                        Grid.Row="1"
                         Style="{StaticResource infoTextStyle}"
                         Text="{x:Bind _vm.SelectedItem.Name, Mode=OneWay}"
                         />
                 <TextBlock
-                        Grid.Row="2"
                         Style="{StaticResource infoTextStyle}"
                         Text="{x:Bind _vm.SelectedItem.StartDate, Mode=OneWay, Converter={StaticResource StartdateFormatter}}"
                         />
                 <TextBlock
-                        Grid.Row="3"
                         Style="{StaticResource infoTextStyle}"
                         Text="{x:Bind _vm.SelectedItem.EndDate, Mode=OneWay, Converter={StaticResource EnddateFormatter}}"
                         />
                 <TextBlock
-                        Grid.Row="4"
                         Style="{StaticResource infoTextStyle}"
                         Text="{x:Bind _vm.SelectedItem.Destination, Mode=OneWay, Converter={StaticResource DestinationFormatter}}"
                         />
                 <StackPanel Orientation="Horizontal" Grid.Row="5">
-                    <Button x:Name="SelectButton" Style="{StaticResource buttonStyle}"
-                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" Click="SelectButton_Click">
+                    <Button x:Name="SelectButton" 
+                            Style="{StaticResource buttonStyle}"
+                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" 
+                            Click="SelectButton_Click"
+                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/SelectIcon.png" 
                                    Style="{StaticResource iconStyle}"/>
@@ -183,17 +227,23 @@
                                        Style="{StaticResource buttonTextStyle}"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="EditButton" Style="{StaticResource buttonStyle}"
-                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" Click="EditButton_Click">
+                    <!--<Button x:Name="EditButton" 
+                            Style="{StaticResource buttonStyle}"
+                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" 
+                            Click="EditButton_Click"
+                            IsEnabled="{x:Bind _vm.ButtonsEnabled}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/EditIcon.png" 
                                    Style="{StaticResource iconStyle}"/>
                             <TextBlock Text="Edit"
                                        Style="{StaticResource buttonTextStyle}"/>
                         </StackPanel>
-                    </Button>
-                    <Button x:Name="DeleteButton" Style="{StaticResource buttonStyle}"
-                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" Click="DeleteButton_Click">
+                    </Button>-->
+                    <Button x:Name="DeleteButton" 
+                            Style="{StaticResource buttonStyle}"
+                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" 
+                            Click="DeleteButton_Click"
+                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Assets/DeleteIcon.png" 
                                    Style="{StaticResource iconStyle}"/>
@@ -202,7 +252,7 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-            </Grid>
+            </StackPanel>
         </Border>
     </Grid>
 </Page>

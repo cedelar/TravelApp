@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TravelApp.Models
 {
-    class TravelRoute
+    public class TravelRoute
     {
         public string Name { get; set; }
         public ObservableCollection<TravelLocation> Locations { get; private set; }
@@ -20,6 +21,7 @@ namespace TravelApp.Models
             this.Locations = locations;
         }
 
+        [JsonConstructor]
         public TravelRoute(string name, string description): this(name, description, new ObservableCollection<TravelLocation>())
         {
         }
@@ -27,6 +29,11 @@ namespace TravelApp.Models
         public void AddTravelLocation(TravelLocation travelLocation)
         {
             Locations.Add(travelLocation);
+        }
+
+        public override string ToString()
+        {
+            return Name + ": " + Description;
         }
     }
 }

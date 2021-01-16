@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelApp.Models
 {
-    class TravelLocation
+    public class TravelLocation
     {
 
         public string Name { get; set; }
@@ -14,18 +14,22 @@ namespace TravelApp.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
-        public TravelLocation(string name, string location)
+        public TravelLocation(string name, string location, double latitude, double longitude)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Location = location ?? throw new ArgumentNullException(nameof(location));
-            double[] coords = Geolocator.getCoordinatesAsync(Location).Result;
-            Latitude = coords[0];
-            Longitude = coords[1];
+            Latitude = latitude;
+            Longitude = longitude;
         }
 
-        public String GetCoordinateString()
+        public string GetCoordinateString()
         {
             return Latitude + "° Latitude, " + Longitude + "° Longitude";
+        }
+
+        public override string ToString()
+        {
+            return Name + ": " + Location + " (" + GetCoordinateString() + ")";
         }
     }
 }

@@ -61,7 +61,23 @@ namespace TravelApp.Views
 
         private void NewButton_Click(object sender, RoutedEventArgs e)
         {
-            _vm.OnNewTravelPlan();
+            _vm.OnNewTravelPlan(
+                nameInput.Text, 
+                startDatePicker.Date.DateTime, 
+                endDatePicker.Date.DateTime, 
+                destinationInput.Text
+                );
+
+            //reset inputfields
+            nameInput.Text = "";
+            startDatePicker.SelectedDate = null;
+            endDatePicker.SelectedDate = null;
+            destinationInput.Text = "";
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            _vm.OnNewPlanCloseButton();
         }
     }
 }

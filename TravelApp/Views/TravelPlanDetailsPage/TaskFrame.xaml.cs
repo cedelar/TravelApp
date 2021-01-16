@@ -22,13 +22,27 @@ namespace TravelApp.Views.TravelPlanDetailsPage
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _vm = new TaskFrameViewModel((Models.NavViewTasksEventArgs) e.Parameter);
+            _vm = new TaskFrameViewModel((Models.NavViewNavigationEventArgs) e.Parameter);
             base.OnNavigatedTo(e);
         }
 
         private void OrderBySelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _vm.SelectionChanged(e.AddedItems[0].ToString());
+        }
+
+        private void NewButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            _vm.OnNewClicked(
+                nameInput.Text, 
+                priorityInput.SelectedValue == null ? "" : priorityInput.SelectedValue.ToString(), 
+                descriptionInput.Text
+                );
+        }
+
+        private void CloseButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            _vm.OnCloseClicked();
         }
     }
 }

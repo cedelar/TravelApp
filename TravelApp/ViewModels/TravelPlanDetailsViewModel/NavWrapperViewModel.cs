@@ -55,17 +55,12 @@ namespace TravelApp.ViewModels
 
         public EventArgs GetArgs(Type pagetype)
         {
-            if(Type.Equals(pagetype, typeof(ItemFrame)))
+            if(Type.Equals(pagetype, typeof(ItemFrame)) ||
+               Type.Equals(pagetype, typeof(TaskFrame)) ||
+               Type.Equals(pagetype, typeof(RouteFrame))
+               )
             {
-                return GetItemArgs();
-            }
-            if (Type.Equals(pagetype, typeof(TaskFrame)))
-            {
-                return GetTaskArgs();
-            }
-            if (Type.Equals(pagetype, typeof(RouteFrame)))
-            {
-                return GetRouteArgs();
+                return GetNavigationArgs();
             }
             if(Type.Equals(pagetype, typeof(TravelPlanPage)))
             {
@@ -74,27 +69,12 @@ namespace TravelApp.ViewModels
             return null;
         }
 
-        private NavViewItemsEventArgs GetItemArgs()
+        private NavViewNavigationEventArgs GetNavigationArgs()
         {
-            return new NavViewItemsEventArgs
+            return new NavViewNavigationEventArgs
             {
-                Items = SelectedTravelPlan.ItemList
-            };
-        }
-
-        private NavViewTasksEventArgs GetTaskArgs()
-        {
-            return new NavViewTasksEventArgs
-            {
-                Tasks = SelectedTravelPlan.TaskList
-            };
-        }
-
-        private NavViewRoutesEventArgs GetRouteArgs()
-        {
-            return new NavViewRoutesEventArgs
-            {
-                Travelroutes = SelectedTravelPlan.RouteList
+                Username = UserName,
+                TravelPlan = SelectedTravelPlan
             };
         }
 
