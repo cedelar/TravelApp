@@ -1,31 +1,31 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TravelApp.Models
 {
+    /// <Summary>
+    /// Data class for the TravelRoute
+    /// </Summary>
     public class TravelRoute
     {
+        #region Properties
         public string Name { get; set; }
         public ObservableCollection<TravelLocation> Locations { get; private set; }
         public string Description { get; set; }
+        #endregion
 
-        public TravelRoute(string name, string description, ObservableCollection<TravelLocation> locations)
+        #region Constructors
+        [JsonConstructor]
+        public TravelRoute(string name, string description)
         {
             this.Name = name ?? throw new ArgumentNullException(nameof(name));
             this.Description = description;
-            this.Locations = locations;
+            this.Locations = new ObservableCollection<TravelLocation>();
         }
+        #endregion
 
-        [JsonConstructor]
-        public TravelRoute(string name, string description): this(name, description, new ObservableCollection<TravelLocation>())
-        {
-        }
-
+        #region Methods
         public void AddTravelLocation(TravelLocation travelLocation)
         {
             Locations.Add(travelLocation);
@@ -35,5 +35,6 @@ namespace TravelApp.Models
         {
             return Name + ": " + Description;
         }
+        #endregion
     }
 }

@@ -10,11 +10,13 @@ using Windows.Web.Http;
 
 namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
 {
+    /// <Summary>
+    /// View model class for the TaskList Frame
+    /// </Summary>
     class TaskFrameViewModel : ComputedBindableBase
     {
         #region Properties
         private const string BASE_URL = "http://localhost:51758/api/";
-
 
         public ObservableCollection<TravelTask> TaskList
         {
@@ -25,7 +27,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         }
 
         private string _selectedBoxValue;
-
         public string SelectedBoxValue
         {
             get 
@@ -86,7 +87,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         [PropertySource(nameof(IsLoading))]
         public bool ButtonsEnabled => !IsLoading;
 
-
         [PropertySource(nameof(SelectedItem))]
         public bool ControlButtonsVisible => _selectedItem != null;
 
@@ -141,9 +141,9 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
                 Set(ref _travelPlan, value);
             }
         }
-
         #endregion
 
+        #region Constructors
         public TaskFrameViewModel(NavViewNavigationEventArgs e)
         {
             UserName = e.Username;
@@ -153,7 +153,9 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
             ShowNewTaskFields = false;
             SelectedBoxValue = "Nothing";
         }
+        #endregion
 
+        #region Methods
         private void ResetMessage()
         {
             Message = "";
@@ -163,6 +165,7 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         {
             SelectedBoxValue = input;
         }
+
         public async void OnNewClicked(string newName, string newPriority, string newDescription)
         {
             if (!ShowNewTaskFields)
@@ -204,23 +207,18 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
                 //Restcall
                 try
                 {
-                    // Construct the HttpClient and Uri. This endpoint is for test purposes only.
                     HttpClient httpClient = new HttpClient();
                     Uri uri = new Uri(BASE_URL + "User/addTravelTask/" + UserName + "/" + TravelPlan.Name);
 
-
-                    // Construct the JSON to post.
                     HttpStringContent content = new HttpStringContent(
                         JsonConvert.SerializeObject(newTask),
                         UnicodeEncoding.Utf8,
                         "application/json");
 
-                    // Post the JSON and wait for a response.
                     HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
                         uri,
                         content);
 
-                    // Make sure the post succeeded, and write out the response.
                     httpResponseMessage.EnsureSuccessStatusCode();
                     var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
                     Message = httpResponseBody;
@@ -234,7 +232,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
                 }
                 catch (Exception ex)
                 {
-                    // Write out any exceptions.
                     Message = ex.Message;
                 }
 
@@ -247,6 +244,7 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         {
             ShowNewTaskFields = false;
         }
+        #endregion
     }
 }
 

@@ -2,8 +2,10 @@
 using TravelApp.Models;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 
+/// <Summary>
+/// Xaml data converters for the TaskFrame
+/// </Summary>
 namespace TravelApp.Converters
 {
     class PriorityToColorConverter : IValueConverter

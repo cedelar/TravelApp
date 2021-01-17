@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TravelApp.Models
 {
+    /// <Summary>
+    /// Data class for the TravelPlan
+    /// </Summary>
     public class TravelPlan
     {
-        #region properties
+        #region Properties
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -59,10 +59,7 @@ namespace TravelApp.Models
         }
         #endregion
 
-        public TravelPlan(string name) : this(name, new DateTime(), new DateTime(), null)
-        {
-        }
-
+        #region Constructors
         [JsonConstructor]
         public TravelPlan(string name, DateTime startDate, DateTime endDate, string destination)
         {
@@ -74,8 +71,9 @@ namespace TravelApp.Models
             TaskList = new ObservableCollection<TravelTask>();
             RouteList = new ObservableCollection<TravelRoute>();
         }
+        #endregion
 
-
+        #region Methods
         public void AddTravelItem(TravelItem travelItem)
         {
             ItemList.Add(travelItem);
@@ -105,5 +103,6 @@ namespace TravelApp.Models
         {
             return CompletedTaskCount + "/" + TotalTaskCount;
         }
+        #endregion
     }
 }

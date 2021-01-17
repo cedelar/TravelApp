@@ -10,11 +10,13 @@ using Windows.Web.Http;
 
 namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
 {
-    class ItemFrameViewModel: ComputedBindableBase
+    /// <Summary>
+    /// View model class for the ItemList Frame
+    /// </Summary>
+    class ItemFrameViewModel : ComputedBindableBase
     {
         #region Properties
         private const string BASE_URL = "http://localhost:51758/api/";
-
 
         public ObservableCollection<TravelItem> ItemList
         {
@@ -65,7 +67,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
 
         [PropertySource(nameof(IsLoading))]
         public bool ButtonsEnabled => !IsLoading;
-
 
         [PropertySource(nameof(SelectedItem))]
         public bool ControlButtonsVisible => _selectedItem != null;
@@ -123,7 +124,7 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         }
         #endregion
 
-
+        #region Constructors
         public ItemFrameViewModel(NavViewNavigationEventArgs e)
         {
             UserName = e.Username;
@@ -133,7 +134,9 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
             ShowNewItemFields = false;
             
         }
+        #endregion
 
+        #region Methods
         private void ResetMessage()
         {
             Message = "";
@@ -162,23 +165,18 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
                 //Restcall
                 try
                 {
-                    // Construct the HttpClient and Uri. This endpoint is for test purposes only.
                     HttpClient httpClient = new HttpClient();
                     Uri uri = new Uri(BASE_URL + "User/addTravelItem/" + UserName + "/" + TravelPlan.Name);
 
-
-                    // Construct the JSON to post.
                     HttpStringContent content = new HttpStringContent(
                         JsonConvert.SerializeObject(newItem),
                         UnicodeEncoding.Utf8,
                         "application/json");
 
-                    // Post the JSON and wait for a response.
                     HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
                         uri,
                         content);
 
-                    // Make sure the post succeeded, and write out the response.
                     httpResponseMessage.EnsureSuccessStatusCode();
                     var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
                     Message = httpResponseBody;
@@ -191,7 +189,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
                 }
                 catch (Exception ex)
                 {
-                    // Write out any exceptions.
                     Message = ex.Message;
                 }
 
@@ -204,5 +201,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         {
             ShowNewItemFields = false;
         }
+        #endregion
     }
 }

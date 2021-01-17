@@ -1,15 +1,23 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.ObjectModel;
 using TravelApp.Models;
 using ViewModel;
+using Windows.Devices.Geolocation;
+using Windows.Storage.Streams;
+using Windows.Web.Http;
 
 namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
 {
+    /// <Summary>
+    /// View model class for the RouteList Frame
+    /// </Summary>
     class RouteFrameViewModel : ComputedBindableBase
     {
-
         #region Properties
         private const string BASE_URL = "http://localhost:51758/api/";
+
+        public Geopoint hintPoint = new Geopoint(new BasicGeoposition { Latitude = 54.0, Longitude = 2.0, Altitude = 0.0});
 
         public ObservableCollection<TravelRoute> RouteList
         {
@@ -49,7 +57,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
             }
         }
 
-
         private TravelLocation _selectedLocation;
         public TravelLocation SelectedLocation
         {
@@ -82,7 +89,6 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
 
         [PropertySource(nameof(IsLoading))]
         public bool ButtonsEnabled => !IsLoading;
-
 
         [PropertySource(nameof(SelectedLocation))]
         public bool ControlButtonsVisible => _selectedLocation != null;
@@ -155,6 +161,7 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         public event EventHandler<EventArgs> RequestMapUpdate;
         #endregion
 
+        #region Constructors
         public RouteFrameViewModel(NavViewNavigationEventArgs e)
         {
             UserName = e.Username;
@@ -163,13 +170,15 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
             ResetMessage();
             ShowNewRouteFields = false;
         }
+        #endregion
 
+        #region Methods
         private void ResetMessage()
         {
             Message = "";
         }
 
-        public void OnNewRouteClicked(string newName, string newDescription)
+        public async void OnNewRouteClicked(string newName, string newDescription)
         {
             if (!ShowNewRouteFields)
             {
@@ -187,44 +196,102 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
                 Message = "Processing, please wait.";
                 string newDescriptionRef = string.IsNullOrEmpty(newDescription) ? "No Description" : newDescription;
                 TravelRoute newRoute = new TravelRoute(newName, newDescriptionRef);
-                Message = newRoute.ToString();
 
                 //REST
+                try
+                {
+                    HttpClient httpClient = new HttpClient();
+                    Uri uri = new Uri(BASE_URL + "User/addTravelRoute/" + UserName + "/" + TravelPlan.Name );
+
+                    HttpStringContent content = new HttpStringContent(
+                        JsonConvert.SerializeObject(newRoute),
+                        UnicodeEncoding.Utf8,
+                        "application/json");
+
+                    HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
+                        uri,
+                        content);
+
+                    httpResponseMessage.EnsureSuccessStatusCode();
+                    var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
+                    Message = httpResponseBody;
+
+                    if (httpResponseBody.Split(" ")[0] != "Error:")
+                    {
+                        TravelPlan.AddTravelRoute(newRoute);
+                        RaisePropertyChanged("RouteList");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Message = ex.Message;
+                }
 
                 ShowNewRouteFields = false;
                 IsLoading = false;
             }
         }
 
-        public void OnNewLocationClicked(string newName, string newLocation, double newLatitude, double newLongitude)
+        public async void OnNewLocationClicked(string newName, string newLocation, double newLatitude, double newLongitude)
         {
-            if (!ShowNewLocationFields)
+            if (SelectedRoute != null)
             {
-                ShowNewLocationFields = true;
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(newName))
+                if (!ShowNewLocationFields)
                 {
-                    Message = "A name is required, try again.";
-                    return;
+                    ShowNewLocationFields = true;
                 }
-
-                if (string.IsNullOrEmpty(newLocation))
+                else
                 {
-                    Message = "A location is required, try again.";
-                    return;
+                    if (string.IsNullOrEmpty(newName))
+                    {
+                        Message = "A name is required, try again.";
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(newLocation))
+                    {
+                        Message = "A location is required, try again.";
+                        return;
+                    }
+
+                    IsLoading = true;
+                    Message = "Processing, please wait.";
+                    TravelLocation newTravelLocation = new TravelLocation(newName, newLocation, newLatitude, newLongitude);
+
+                    //REST
+                    try
+                    {
+                        HttpClient httpClient = new HttpClient();
+                        Uri uri = new Uri(BASE_URL + "User/addTravelLocation/" + UserName + "/" + TravelPlan.Name + "/" + SelectedRoute.Name);
+
+                        HttpStringContent content = new HttpStringContent(
+                            JsonConvert.SerializeObject(newTravelLocation),
+                            UnicodeEncoding.Utf8,
+                            "application/json");
+
+                        HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
+                            uri,
+                            content);
+
+                        httpResponseMessage.EnsureSuccessStatusCode();
+                        var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
+                        Message = httpResponseBody;
+
+                        if (httpResponseBody.Split(" ")[0] != "Error:")
+                        {
+                            SelectedRoute.AddTravelLocation(newTravelLocation);
+                            RaisePropertyChanged("LocationList");
+                            RequestMapUpdate?.Invoke(this, new EventArgs());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = ex.Message;
+                    }
+
+                    ShowNewRouteFields = false;
+                    IsLoading = false;
                 }
-
-                IsLoading = true;
-                Message = "Processing, please wait.";
-                TravelLocation newTravelLocation = new TravelLocation(newName, newLocation, newLatitude, newLongitude);
-                Message = newTravelLocation.ToString();
-
-                //REST
-
-                ShowNewRouteFields = false;
-                IsLoading = false;
             }
         }
 
@@ -237,6 +304,12 @@ namespace TravelApp.ViewModels.TravelPlanDetailsViewModel
         {
             ShowNewLocationFields = false;
         }
+
+        public void MessageUpdate(string message)
+        {
+            Message = message;
+        }
+        #endregion
     }
 }
 

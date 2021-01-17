@@ -1,6 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
+/// <Summary>
+/// Xaml data converters for the TravelPlan page
+/// </Summary>
 namespace TravelApp.Converters
 {
     public class TitleFormatter : IValueConverter
@@ -71,5 +74,4 @@ namespace TravelApp.Converters
             return value;
         }
     }
-
 }

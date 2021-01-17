@@ -6,23 +6,25 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace TravelApp.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Code behind class for the TravelPlanList page
     /// </summary>
     public sealed partial class TravelPlanPage : Page
     {
+        #region Properties
         private TravelPlanViewModel _vm;
+        #endregion
 
-
+        #region Constructors
         public TravelPlanPage()
         {
             this.InitializeComponent();
         }
+        #endregion
 
+        #region Methods
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _vm = new TravelPlanViewModel((Models.StartToTravelPlanNavigationEventArgs) e.Parameter);
@@ -37,11 +39,6 @@ namespace TravelApp.Views
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
             _vm.OnSelectTravelPlan();
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            _vm.OnEditTravelPlan();
         }
 
         private async void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -79,5 +76,6 @@ namespace TravelApp.Views
         {
             _vm.OnNewPlanCloseButton();
         }
+        #endregion
     }
 }

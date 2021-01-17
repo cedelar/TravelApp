@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using TravelApp.Models;
 using TravelApp.Views;
 using TravelApp.Views.TravelPlanDetailsPage;
@@ -7,8 +6,10 @@ using ViewModel;
 
 namespace TravelApp.ViewModels
 {
-
-    class NavWrapperViewModel: ComputedBindableBase
+    /// <Summary>
+    /// View model class for the NavigationView wrapper page
+    /// </Summary>
+    class NavWrapperViewModel : ComputedBindableBase
     {
         #region Properties
         private User _user;
@@ -41,6 +42,7 @@ namespace TravelApp.ViewModels
         }
         #endregion
 
+        #region Constructors
         public NavWrapperViewModel(TravelPlanToNavViewNavigationEventArgs e)
         {
             _user = e.User;
@@ -52,12 +54,15 @@ namespace TravelApp.ViewModels
                 }
             }
         }
+        #endregion
 
+        #region Methods
         public EventArgs GetArgs(Type pagetype)
         {
             if(Type.Equals(pagetype, typeof(ItemFrame)) ||
                Type.Equals(pagetype, typeof(TaskFrame)) ||
-               Type.Equals(pagetype, typeof(RouteFrame))
+               Type.Equals(pagetype, typeof(RouteFrame)) ||
+               Type.Equals(pagetype, typeof(SettingsFrame))
                )
             {
                 return GetNavigationArgs();
@@ -85,6 +90,6 @@ namespace TravelApp.ViewModels
                 User = _user
             };
         }
-
+        #endregion
     }
 }

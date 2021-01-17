@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TravelApp.Models;
 using TravelApp.ViewModels;
 using TravelApp.Views.TravelPlanDetailsPage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace TravelApp.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Code behind class for the NavigationView Wrapperpage
     /// </summary>
     public sealed partial class NavWrapperPage : Page
     {
         #region Properties
         private NavWrapperViewModel _vm;
 
-        // List of ValueTuple holding the Navigation Tag and the relative Navigation Page
         private readonly List<(string Tag, Type Page)> _pages = new List<(string Tag, Type Page)>
         {
             ("ItemTab", typeof(ItemFrame)),
@@ -29,11 +25,14 @@ namespace TravelApp.Views
         };
         #endregion
 
+        #region Constructors
         public NavWrapperPage()
         {
             this.InitializeComponent();
         }
+        #endregion
 
+        #region Methods
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _vm = new NavWrapperViewModel((Models.TravelPlanToNavViewNavigationEventArgs) e.Parameter);
@@ -87,12 +86,9 @@ namespace TravelApp.Views
                 var item = _pages.FirstOrDefault(p => p.Tag.Equals(navItemTag));
                 _page = item.Page;
             }
-            // Get the page type before navigation so you can prevent duplicate
-            // entries in the backstack.
 
             var preNavPageType = ContentFrame.CurrentSourcePageType;
 
-            // Only navigate if the selected page isn't currently loaded.
             if (!(_page is null) && !Type.Equals(preNavPageType, _page))
             {
                 ContentFrame.Navigate(_page, _vm.GetArgs(_page), transitionInfo);
@@ -105,7 +101,6 @@ namespace TravelApp.Views
 
             if (ContentFrame.SourcePageType == typeof(SettingsFrame))
             {
-                // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavView.SelectedItem = (NavigationViewItem)NavView.SettingsItem;
                 NavView.Header = "Settings";
             }
@@ -122,8 +117,7 @@ namespace TravelApp.Views
             }
         }
 
-        private void NavView_BackRequested(NavigationView sender,
-                                   NavigationViewBackRequestedEventArgs args)
+        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             On_BackRequested();
         }
@@ -133,7 +127,6 @@ namespace TravelApp.Views
             if (!ContentFrame.CanGoBack)
                 return false;
 
-            // Don't go back if the nav pane is overlayed.
             if (NavView.IsPaneOpen &&
                 (NavView.DisplayMode == NavigationViewDisplayMode.Compact ||
                  NavView.DisplayMode == NavigationViewDisplayMode.Minimal))
@@ -142,5 +135,6 @@ namespace TravelApp.Views
             ContentFrame.GoBack();
             return true;
         }
+        #endregion
     }
 }

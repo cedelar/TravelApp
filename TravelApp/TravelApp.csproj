@@ -127,14 +127,13 @@
     <Compile Include="Models\Data\TravelRoute.cs" />
     <Compile Include="Models\Data\TravelTask.cs" />
     <Compile Include="Models\Data\User.cs" />
-    <Compile Include="Models\CustomEventArgs\MessageEventArgs.cs" />
     <Compile Include="Models\CustomEventArgs\NavigationEventArgs.cs" />
-    <Compile Include="Network\NetworkcallHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\TravelPlanDetailsViewModel\ItemFrameViewModel.cs" />
     <Compile Include="ViewModels\TravelPlanDetailsViewModel\RouteFrameViewModel.cs" />
     <Compile Include="ViewModels\TravelPlanDetailsViewModel\NavWrapperViewModel.cs" />
     <Compile Include="ViewModels\StartPageViewModel.cs" />
+    <Compile Include="ViewModels\TravelPlanDetailsViewModel\SettingsFrameViewModel.cs" />
     <Compile Include="ViewModels\TravelPlanDetailsViewModel\TaskFrameViewModel.cs" />
     <Compile Include="ViewModels\TravelPlanViewModel.cs" />
     <Compile Include="Views\TravelPlanDetailsPage\ItemFrame.xaml.cs">

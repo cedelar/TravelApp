@@ -2,7 +2,6 @@
     x:Class="TravelApp.Views.TravelPlanDetailsPage.RouteFrame"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TravelApp.Views.TravelPlanDetailsPage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:TravelApp.Models"
@@ -23,63 +22,184 @@
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="Width" Value="350"/>
         </Style>
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style x:Key="buttonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="messageTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,5"/>
+        </Style>
+        <Style x:Key="iconStyle" TargetType="Image">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
     </Page.Resources>
 
-
     <Grid>
-        <StackPanel x:Name="MainStackPanel">
-            <ListView x:Name="TravelRouteList" 
-                      ItemsSource="{x:Bind _vm.RouteList, Mode=OneWay}" 
-                      SelectedItem="{x:Bind _vm.SelectedRoute, Mode=TwoWay}"
-                      Width="400">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:TravelRoute">
-                        <StackPanel>
-                            <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                   Style="{StaticResource nameTextStyle}"/>
-                            <TextBlock Text="{x:Bind Description, Mode=OneWay}"
-                                   Style="{StaticResource descriptionTextStyle}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Border BorderThickness="1,0,0,0" 
-                    BorderBrush="#c0c0c0"
-                    Padding="30,0,0,0">
-                <StackPanel>
-                    <ListView x:Name="TravelLocationList" 
-                              ItemsSource="{x:Bind _vm.LocationList, Mode=OneWay}" 
-                              SelectedItem="{x:Bind _vm.SelectedLocation, Mode=TwoWay}"
-                              Height="500"
-                              Width="400">
+        <ScrollViewer>
+            <StackPanel x:Name="MainStackPanel">
+                <StackPanel HorizontalAlignment="Left"
+                            Width="500">
+                    <StackPanel Grid.Row="0"
+                                Margin="20,0,0,0">
+                        <TextBlock Text="{x:Bind _vm.Message, Mode=OneWay}"
+                                   Style="{StaticResource messageTextStyle}"
+                                   TextWrapping="Wrap"/>
+                        <ProgressRing x:Name="LoadingIndicator"
+                                      IsActive="{x:Bind _vm.IsLoading, Mode=OneWay}"
+                                      Margin="0,10,0,0"
+                                      HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <ListView x:Name="TravelRouteList" 
+                              ItemsSource="{x:Bind _vm.RouteList, Mode=OneWay}" 
+                              SelectedItem="{x:Bind _vm.SelectedRoute, Mode=TwoWay}">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="models:TravelLocation">
+                            <DataTemplate x:DataType="models:TravelRoute">
                                 <StackPanel>
                                     <TextBlock Text="{x:Bind Name, Mode=OneWay}"
-                                   Style="{StaticResource nameTextStyle}"/>
-                                    <TextBlock Text="{x:Bind GetCoordinateString(), Mode=OneWay}"
-                                   Style="{StaticResource descriptionTextStyle}"/>
+                                               Style="{StaticResource nameTextStyle}"/>
+                                    <TextBlock Text="{x:Bind Description, Mode=OneWay}"
+                                               Style="{StaticResource descriptionTextStyle}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Maps:MapControl x:Name="LocationMap"
-                                     Style="Terrain"
-                                     ZoomInteractionMode="GestureAndControl"
-                                     MapServiceToken="1KdhtVBnzG47XhmAM5jw~gRRcuAmD5uOd5vTQCzMdEw~AgpRYMnx8z7FKaoSpjCYiutaPV6SAXj4Qju__oIPWF8XLg4IIQvfj-dpns8CZezd"
-                                     Width="400"
-                                     Height="400"/>
+                    <Border BorderThickness="0,3,0,0" 
+                            BorderBrush="Black"
+                            Margin="0,10,0,0">
+                        <StackPanel>
+                            <TextBox x:Name="nameRouteInput"
+                                     Header="Name travelroute:"
+                                     PlaceholderText="Name"
+                                     Margin="0,10,0,0"
+                                     Visibility="{x:Bind _vm.ShowNewRouteFields, Mode=OneWay}"/>
+                            <TextBox x:Name="descriptionRouteInput"
+                                     Header="Description:"
+                                     PlaceholderText="Description"
+                                     Margin="0,10,0,0"
+                                     Visibility="{x:Bind _vm.ShowNewRouteFields, Mode=OneWay}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="NewRouteButton"
+                                        Style="{StaticResource buttonStyle}" 
+                                        IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}" Click="NewRouteButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Assets/AddIcon.png" 
+                                               Style="{StaticResource iconStyle}"/>
+                                        <TextBlock Text="New"
+                                                   Style="{StaticResource buttonTextStyle}"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="CloseRouteButton"
+                                        Style="{StaticResource buttonStyle}" 
+                                        Visibility="{x:Bind _vm.ShowNewRouteFields, Mode=OneWay}"
+                                        IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}" 
+                                        Click="CloseRouteButton_Click" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Assets/CloseIcon.png" 
+                                               Style="{StaticResource iconStyle}"/>
+                                        <TextBlock Text="Close"
+                                                   Style="{StaticResource buttonTextStyle}"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
-            </Border>
-        </StackPanel>
+                <Border x:Name="DetailBorder"
+                        BorderBrush="Black"
+                        Padding="10,0,0,0"
+                        HorizontalAlignment="Left"
+                        BorderThickness ="0,3,0,0"
+                        Width="500">
+                    <StackPanel>
+                        <Maps:MapControl x:Name="LocationMap"
+                                         Style="Terrain"
+                                         ZoomInteractionMode="GestureAndControl"
+                                         MapServiceToken="1KdhtVBnzG47XhmAM5jw~gRRcuAmD5uOd5vTQCzMdEw~AgpRYMnx8z7FKaoSpjCYiutaPV6SAXj4Qju__oIPWF8XLg4IIQvfj-dpns8CZezd"
+                                         Height="380"
+                                         Margin="0,10,0,10"/>
+                        <ListView x:Name="TravelLocationList" 
+                                  ItemsSource="{x:Bind _vm.LocationList, Mode=OneWay}" 
+                                  SelectedItem="{x:Bind _vm.SelectedLocation, Mode=TwoWay}"
+                                  Padding="20,0,0,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="models:TravelLocation">
+                                    <StackPanel>
+                                        <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                                   Style="{StaticResource nameTextStyle}"/>
+                                        <TextBlock Text="{x:Bind GetCoordinateString(), Mode=OneWay}"
+                                                   Style="{StaticResource descriptionTextStyle}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Border BorderThickness="0,3,0,0" 
+                                BorderBrush="Black"
+                                Margin="0,10,0,0">
+                            <StackPanel>
+                                <TextBox x:Name="nameLocationInput"
+                                         Header="Name location:"
+                                         PlaceholderText="Name"
+                                         Margin="0,10,0,0"
+                                         Visibility="{x:Bind _vm.ShowNewLocationFields, Mode=OneWay}"/>
+                                <TextBox x:Name="locationInput"
+                                         Header="Location:"
+                                         PlaceholderText="Location"
+                                         Margin="0,10,0,0"
+                                         Visibility="{x:Bind _vm.ShowNewLocationFields, Mode=OneWay}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="NewLocationButton"
+                                            Style="{StaticResource buttonStyle}" 
+                                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}" 
+                                            Click="NewLocationButton_Click" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Assets/AddIcon.png" 
+                                                   Style="{StaticResource iconStyle}"/>
+                                            <TextBlock Text="New"
+                                                       Style="{StaticResource buttonTextStyle}"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button x:Name="CloseLocationButton"
+                                            Style="{StaticResource buttonStyle}" 
+                                            Visibility="{x:Bind _vm.ShowNewLocationFields, Mode=OneWay}"
+                                            IsEnabled="{x:Bind _vm.ButtonsEnabled, Mode=OneWay}" 
+                                            Click="CloseLocationButton_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Assets/CloseIcon.png" 
+                                                   Style="{StaticResource iconStyle}"/>
+                                            <TextBlock Text="Close"
+                                                       Style="{StaticResource buttonTextStyle}"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1200" />
+                        <AdaptiveTrigger MinWindowWidth="1400" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MainStackPanel.Orientation" Value="Horizontal"/>
+                        <Setter Target="DetailBorder.BorderThickness" Value="1,0,0,0" />
+                        <Setter Target="DetailBorder.BorderBrush" Value="#c0c0c0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

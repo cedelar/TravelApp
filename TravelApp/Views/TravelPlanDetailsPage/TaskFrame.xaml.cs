@@ -2,24 +2,25 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace TravelApp.Views.TravelPlanDetailsPage
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Code behind class for the TaskList Frame
     /// </summary>
     public sealed partial class TaskFrame : Page
     {
+        #region Properties
         private TaskFrameViewModel _vm;
+        #endregion
 
-
-
+        #region Constructors
         public TaskFrame()
         {
             this.InitializeComponent();
         }
+        #endregion
 
+        #region Methods
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _vm = new TaskFrameViewModel((Models.NavViewNavigationEventArgs) e.Parameter);
@@ -38,11 +39,16 @@ namespace TravelApp.Views.TravelPlanDetailsPage
                 priorityInput.SelectedValue == null ? "" : priorityInput.SelectedValue.ToString(), 
                 descriptionInput.Text
                 );
+
+            //reset
+            nameInput.Text = "";
+            descriptionInput.Text = "";
         }
 
         private void CloseButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             _vm.OnCloseClicked();
         }
+        #endregion
     }
 }

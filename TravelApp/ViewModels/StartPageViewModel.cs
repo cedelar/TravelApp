@@ -1,21 +1,20 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Input;
 using TravelApp.Models;
-using TravelApp.Network;
 using ViewModel;
 using Windows.Storage.Streams;
 using Windows.Web.Http;
 
 namespace TravelApp.ViewModels
 {
-    class StartPageViewModel: ComputedBindableBase
+    /// <Summary>
+    /// View model class for the Login page
+    /// </Summary>
+    class StartPageViewModel : ComputedBindableBase
     {
-        private const string BASE_URL = "http://localhost:51758/api/";
         #region Properties
+        private const string BASE_URL = "http://localhost:51758/api/";
+
         public event EventHandler<StartToTravelPlanNavigationEventArgs> NavigateToTravelPlanPage;
 
         private bool _isLoading;
@@ -59,21 +58,22 @@ namespace TravelApp.ViewModels
                 Set(ref _showNewUserFields, value);
             }
         }
-        
         #endregion
 
+        #region Constructors
         public StartPageViewModel()
         {
             ShowNewUserFields = false;
             IsLoading = false;
             ResetMessage();
         }
+        #endregion
 
+        #region Methods
         private void ResetMessage()
         {
             Message = "";
         }
-
 
         public async void OnLogin(string username, string password)
         {
@@ -84,11 +84,11 @@ namespace TravelApp.ViewModels
             }
             IsLoading = true;
             Message = "Loading, please wait.";
-            var uri = new System.Uri(BASE_URL + "User/getByName/" + username + "/" + password);
 
+            //REST
+            var uri = new System.Uri(BASE_URL + "User/getByName/" + username + "/" + password);
             using (var httpClient = new HttpClient())
             {
-                // Always catch network exceptions for async methods
                 try
                 {
                     var result = await httpClient.GetStringAsync(uri);
@@ -104,7 +104,6 @@ namespace TravelApp.ViewModels
                         //Login failed
                         Message = "Incorrect logincredentials, try again (" + user.Password + ")" ;
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -124,7 +123,6 @@ namespace TravelApp.ViewModels
             {
                 Message = "Communicating with server, please wait.";
                 IsLoading = true;
-                //get input
                 ShowNewUserFields = false;
                 if(string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
                 {
@@ -135,36 +133,32 @@ namespace TravelApp.ViewModels
                     //Restcall
                     try
                     {
-                        // Construct the HttpClient and Uri. This endpoint is for test purposes only.
                         HttpClient httpClient = new HttpClient();
                         Uri uri = new Uri(BASE_URL + "User/addUser");
                         string Jsoncontent = "{ \"Username\": \"" + newUsername + "\"" + "" +
                             ",\"Password\":\"" + newPassword + "\" }";
 
-                        // Construct the JSON to post.
                         HttpStringContent content = new HttpStringContent(
                             Jsoncontent,
                             UnicodeEncoding.Utf8,
                             "application/json");
 
-                        // Post the JSON and wait for a response.
                         HttpResponseMessage httpResponseMessage = await httpClient.PostAsync(
                             uri,
                             content);
 
-                        // Make sure the post succeeded, and write out the response.
                         httpResponseMessage.EnsureSuccessStatusCode();
                         var httpResponseBody = await httpResponseMessage.Content.ReadAsStringAsync();
                         Message = httpResponseBody;
                     }
                     catch (Exception ex)
                     {
-                        // Write out any exceptions.
                         Message = ex.Message;
                     }
                 }
             }
             IsLoading = false;
         }
+        #endregion
     }
 }

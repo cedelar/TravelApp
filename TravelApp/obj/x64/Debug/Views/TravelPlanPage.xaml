@@ -75,11 +75,9 @@
         <StackPanel Grid.Row="0"
                     Margin="20,0,0,0">
             <TextBlock x:ConnectionId='21'                                                                                     
-                       Style="{StaticResource titleTextStyle}"
-                   />
+                       Style="{StaticResource titleTextStyle}"/>
             <TextBlock x:ConnectionId='22'                                         
-                       Style="{StaticResource messageTextStyle}"
-                   />
+                       Style="{StaticResource messageTextStyle}"/>
             <ProgressRing x:ConnectionId='23' x:Name="LoadingIndicator"
                                                                         
                           Margin="0,10,0,0"
@@ -109,25 +107,26 @@
                                                                                    />
             <StackPanel Orientation="Horizontal">
                 <Button x:ConnectionId='19' x:Name="NewButton"
-                    Style="{StaticResource buttonStyle}" 
-                                           
-                                                                        >
+                        Style="{StaticResource buttonStyle}" 
+                                               
+                                                                            >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Assets/AddIcon.png" 
-                           Style="{StaticResource iconStyle}"/>
+                               Style="{StaticResource iconStyle}"/>
                         <TextBlock Text="New"
-                               Style="{StaticResource buttonTextStyle}"/>
+                                   Style="{StaticResource buttonTextStyle}"/>
                     </StackPanel>
                 </Button>
                 <Button x:ConnectionId='20' x:Name="CloseButton"
-                    Style="{StaticResource buttonStyle}" 
-                                                                                  
-                                                                                                  >
+                        Style="{StaticResource buttonStyle}" 
+                                                                                      
+                                                                             
+                                                 >
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Assets/CloseIcon.png" 
-                           Style="{StaticResource iconStyle}"/>
+                               Style="{StaticResource iconStyle}"/>
                         <TextBlock Text="Close"
-                               Style="{StaticResource buttonTextStyle}"/>
+                                   Style="{StaticResource buttonTextStyle}"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -139,7 +138,8 @@
                   HorizontalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate                              >
-                    <Border x:ConnectionId='10' BorderThickness="0,0,0,1" BorderBrush="#c0c0c0">
+                    <Border x:ConnectionId='10' BorderThickness="0,0,0,1" 
+                            BorderBrush="#c0c0c0">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -193,28 +193,19 @@
                 BorderBrush="Black" 
                 Grid.Row="3">
             <StackPanel>
-                <TextBlock
-                        Style="{StaticResource infoTextStyle}"
-                        TextDecorations="Underline"
-                        Text="Details:"
-                        />
-                <TextBlock x:ConnectionId='3'
-                        Style="{StaticResource infoTextStyle}"
-                                                                          
-                        />
-                <TextBlock x:ConnectionId='4'
-                        Style="{StaticResource infoTextStyle}"
-                                                                                                                              
-                        />
-                <TextBlock x:ConnectionId='5'
-                        Style="{StaticResource infoTextStyle}"
-                                                                                                                          
-                        />
-                <TextBlock x:ConnectionId='6'
-                        Style="{StaticResource infoTextStyle}"
-                                                                                                                                  
-                        />
-                <StackPanel Orientation="Horizontal" Grid.Row="5">
+                <TextBlock Style="{StaticResource infoTextStyle}"
+                           TextDecorations="Underline"
+                           Text="Details:"/>
+                <TextBlock x:ConnectionId='3' Style="{StaticResource infoTextStyle}"
+                                                                             />
+                <TextBlock x:ConnectionId='4' Style="{StaticResource infoTextStyle}"
+                                                                                                                                 />
+                <TextBlock x:ConnectionId='5' Style="{StaticResource infoTextStyle}"
+                                                                                                                             />
+                <TextBlock x:ConnectionId='6' Style="{StaticResource infoTextStyle}"
+                                                                                                                                     />
+                <StackPanel Orientation="Horizontal" 
+                            Grid.Row="5">
                     <Button x:ConnectionId='7' x:Name="SelectButton" 
                             Style="{StaticResource buttonStyle}"
                                                                                          
@@ -227,18 +218,6 @@
                                        Style="{StaticResource buttonTextStyle}"/>
                         </StackPanel>
                     </Button>
-                    <!--<Button x:Name="EditButton" 
-                            Style="{StaticResource buttonStyle}"
-                            Visibility="{x:Bind _vm.ControlButtonsVisible, Mode=OneWay}" 
-                            Click="EditButton_Click"
-                            IsEnabled="{x:Bind _vm.ButtonsEnabled}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/Assets/EditIcon.png" 
-                                   Style="{StaticResource iconStyle}"/>
-                            <TextBlock Text="Edit"
-                                       Style="{StaticResource buttonTextStyle}"/>
-                        </StackPanel>
-                    </Button>-->
                     <Button x:ConnectionId='8' x:Name="DeleteButton" 
                             Style="{StaticResource buttonStyle}"
                                                                                          

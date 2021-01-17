@@ -1,20 +1,18 @@
-﻿using System;
-using System.ComponentModel;
-using TravelApp.ViewModels;
+﻿using TravelApp.ViewModels;
 using Windows.UI.Xaml.Controls;
-
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace TravelApp.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Code behind class for the Login page
     /// </summary>
     public sealed partial class StartPage : Page
     {
+        #region Properties
         private StartPageViewModel _vm;
+        #endregion
 
+        #region Constructors
         public StartPage()
         {
             this.InitializeComponent();
@@ -26,7 +24,9 @@ namespace TravelApp.Views
                 this.Frame.Navigate(typeof(TravelPlanPage), e);
             };
         }
+        #endregion
 
+        #region Methods
         private void LoginButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             _vm.OnLogin(nameInput.Text, pwdInput.Password);
@@ -38,5 +38,6 @@ namespace TravelApp.Views
             newNameInput.Text = "";
             newPasswordInput.Text = "";
         }
+        #endregion
     }
 }
